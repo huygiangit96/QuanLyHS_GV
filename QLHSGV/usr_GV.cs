@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QLHSGV.Data;
+using QLHSGV.DAO;
+using QLHSGV.EF;
 
 namespace QLHSGV._GV
 {
     public partial class usr_GV : UserControl
     {
         private static usr_GV _instance;
-        private QLHSGVEntities dt = new QLHSGVEntities();
+        
 
         public static usr_GV Instance
         {
@@ -37,7 +38,37 @@ namespace QLHSGV._GV
 
         private void usr_GV_Load(object sender, EventArgs e)
         {
-            var query = dt.GiaoViens;
+           
+
+        }
+
+        private void dtg_GiaoVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QLHSGV.Data;
+using QLHSGV.EF;
+using QLHSGV.DAO;
 
 namespace QLHSGV._TTGD
 {
     public partial class usr_TTGD : UserControl
     {
         private static usr_TTGD _instance;
-        private QLHSGVEntities dt = new QLHSGVEntities();
+        private HSGVContext dt = new HSGVContext();
 
         public static usr_TTGD Instance
         {
@@ -37,7 +38,43 @@ namespace QLHSGV._TTGD
 
         private void usr_TTGD_Load(object sender, EventArgs e)
         {
-            var query = dt.ThongTinGiangDays;
+          
+        }
+
+        private void dtg_TTGD_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+          
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

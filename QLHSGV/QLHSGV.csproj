@@ -57,39 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\GiaoVien.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\HocSinh.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\LopHoc.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Model_HSGV.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_HSGV.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Model_HSGV.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Model_HSGV.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_HSGV.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sysdiagram.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ThongTinGiangDay.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\User.cs">
-      <DependentUpon>Model_HSGV.tt</DependentUpon>
-    </Compile>
+    <Compile Include="DAO\GiaoVienDAO.cs" />
+    <Compile Include="DAO\LopHocDAO.cs" />
+    <Compile Include="DAO\ThongTinGiangDayDAO.cs" />
+    <Compile Include="DAO\HocSinhDAO.cs" />
+    <Compile Include="EF\GiaoVien.cs" />
+    <Compile Include="EF\HocSinh.cs" />
+    <Compile Include="EF\HSGVContext.cs" />
+    <Compile Include="EF\LopHoc.cs" />
+    <Compile Include="EF\ThongTinGiangDay.cs" />
+    <Compile Include="EF\ThongTinGiangDayView.cs" />
+    <Compile Include="EF\User.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,13 +133,7 @@
     <EmbeddedResource Include="usr_GV.resx">
       <DependentUpon>usr_GV.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Data\Model_HSGV.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_HSGV.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Data\Model_HSGV.edmx.diagram">
-      <DependentUpon>Model_HSGV.edmx</DependentUpon>
-    </None>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -174,23 +146,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Data\Model_HSGV.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_HSGV.edmx</DependentUpon>
-      <LastGenOutput>Model_HSGV.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\Model_HSGV.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_HSGV.edmx</DependentUpon>
-      <LastGenOutput>Model_HSGV.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

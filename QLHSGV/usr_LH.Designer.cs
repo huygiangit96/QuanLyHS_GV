@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtg_GiaoVien = new System.Windows.Forms.DataGridView();
+            this.dtg_LopHoc = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_GiaoVien)).BeginInit();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_LopHoc)).BeginInit();
             this.SuspendLayout();
             // 
-            // dtg_GiaoVien
+            // dtg_LopHoc
             // 
-            this.dtg_GiaoVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_GiaoVien.Location = new System.Drawing.Point(346, 32);
-            this.dtg_GiaoVien.Name = "dtg_GiaoVien";
-            this.dtg_GiaoVien.Size = new System.Drawing.Size(300, 295);
-            this.dtg_GiaoVien.TabIndex = 0;
+            this.dtg_LopHoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_LopHoc.Location = new System.Drawing.Point(346, 32);
+            this.dtg_LopHoc.Name = "dtg_LopHoc";
+            this.dtg_LopHoc.Size = new System.Drawing.Size(300, 295);
+            this.dtg_LopHoc.TabIndex = 0;
+            this.dtg_LopHoc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_LopHoc_CellClick);
             // 
             // button1
             // 
@@ -56,6 +57,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -65,6 +67,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Sửa";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -74,15 +77,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(163, 243);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Tìm kiếm";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
@@ -116,23 +111,33 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "Quân số";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(33, 307);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(138, 20);
+            this.textBox4.TabIndex = 19;
+            this.textBox4.Text = "Nhập để tìm kiếm..";
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
             // usr_LH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dtg_GiaoVien);
+            this.Controls.Add(this.dtg_LopHoc);
             this.Name = "usr_LH";
             this.Size = new System.Drawing.Size(676, 380);
             this.Load += new System.EventHandler(this.usr_LH_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_GiaoVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_LopHoc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,14 +145,14 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dtg_GiaoVien;
+        private System.Windows.Forms.DataGridView dtg_LopHoc;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }

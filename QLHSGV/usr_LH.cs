@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QLHSGV.Data;
+using QLHSGV.EF;
+using QLHSGV.DAO;
 
 namespace QLHSGV._LH
 {
     public partial class usr_LH : UserControl
     {
         private static usr_LH _instance;
-        private QLHSGVEntities dt = new QLHSGVEntities();
+        private HSGVContext dt = new HSGVContext();
 
         public static usr_LH Instance
         {
@@ -37,7 +38,39 @@ namespace QLHSGV._LH
 
         private void usr_LH_Load(object sender, EventArgs e)
         {
-            var query = dt.LopHocs;
+           
+
+        }
+
+        private void dtg_LopHoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

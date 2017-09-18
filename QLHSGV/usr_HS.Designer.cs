@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dtg_GiaoVien = new System.Windows.Forms.DataGridView();
+            this.dtg_HocSinh = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -45,16 +44,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_GiaoVien)).BeginInit();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_HocSinh)).BeginInit();
             this.SuspendLayout();
             // 
-            // dtg_GiaoVien
+            // dtg_HocSinh
             // 
-            this.dtg_GiaoVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_GiaoVien.Location = new System.Drawing.Point(3, 104);
-            this.dtg_GiaoVien.Name = "dtg_GiaoVien";
-            this.dtg_GiaoVien.Size = new System.Drawing.Size(655, 223);
-            this.dtg_GiaoVien.TabIndex = 0;
+            this.dtg_HocSinh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_HocSinh.Location = new System.Drawing.Point(3, 104);
+            this.dtg_HocSinh.Name = "dtg_HocSinh";
+            this.dtg_HocSinh.Size = new System.Drawing.Size(655, 223);
+            this.dtg_HocSinh.TabIndex = 0;
+            this.dtg_HocSinh.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_GiaoVien_CellClick);
             // 
             // button1
             // 
@@ -64,6 +65,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -73,6 +75,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Sửa";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -82,15 +85,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(486, 343);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Tìm kiếm";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
@@ -195,10 +190,21 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Lớp học";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(494, 346);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(138, 20);
+            this.textBox4.TabIndex = 18;
+            this.textBox4.Text = "Nhập để tìm kiếm..";
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
             // usr_HS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -211,15 +217,14 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dtg_GiaoVien);
+            this.Controls.Add(this.dtg_HocSinh);
             this.Name = "usr_HS";
             this.Size = new System.Drawing.Size(676, 380);
             this.Load += new System.EventHandler(this.usr_HS_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dtg_GiaoVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_HocSinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,11 +232,10 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dtg_GiaoVien;
+        private System.Windows.Forms.DataGridView dtg_HocSinh;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -244,5 +248,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
