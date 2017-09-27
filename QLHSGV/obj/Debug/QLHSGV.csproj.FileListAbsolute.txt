@@ -19,3 +19,6 @@ C:\Users\HuyGiang\documents\visual studio 2015\Projects\QLHSGV\obj\Debug\QLHSGV.
 C:\Users\HuyGiang\Documents\GitHub\Demo\QLHSGV\bin\Debug\QLHSGV.exe.config
 C:\Users\HuyGiang\Documents\GitHub\Demo\QLHSGV\obj\Debug\QLHSGV.exe
 C:\Users\HuyGiang\Documents\GitHub\Demo\QLHSGV\obj\Debug\QLHSGV.pdb
+C:\Users\diagr\Desktop\New folder\QuanLyHS_GV\QLHSGV\bin\Debug\QLHSGV.exe.config
+C:\Users\diagr\Desktop\New folder\QuanLyHS_GV\QLHSGV\obj\Debug\QLHSGV.exe
+C:\Users\diagr\Desktop\New folder\QuanLyHS_GV\QLHSGV\obj\Debug\QLHSGV.pdb
