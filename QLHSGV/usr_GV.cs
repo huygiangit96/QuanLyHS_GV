@@ -59,6 +59,9 @@ namespace QLHSGV._GV
             tb_MaGV.Text = chosen.MaGV;
             tb_HoTen.Text = chosen.HoTen;
             tb_DiaChi.Text = chosen.DiaChi;
+            dt_NgaySinh.Value = Convert.ToDateTime(chosen.NgaySinh);
+            cb_GT.Text = chosen.GT;
+            cb_MonHoc.Text = chosen.MonHoc;
 
         }
 
