@@ -129,7 +129,7 @@ namespace QLHSGV._TTGD
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-
+        	textBox2.Text = new GiaoVienDAO().GetMonHocByGv(comboBox1.Text);
         }
     }
 }
