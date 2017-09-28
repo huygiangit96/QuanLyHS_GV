@@ -38,37 +38,86 @@ namespace QLHSGV._GV
 
         private void usr_GV_Load(object sender, EventArgs e)
         {
-           
+            GiaoVienDAO dtgv = new GiaoVienDAO();
+            dtg_GiaoVien.DataSource = dtgv.ListAll();
+
+            dtg_GiaoVien.Columns["MaGV"].HeaderText = "Mã GV";
+            dtg_GiaoVien.Columns["HoTen"].HeaderText = "H? và tên";
+            dtg_GiaoVien.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
+            dtg_GiaoVien.Columns["GT"].HeaderText = "Gi?i tính";
+            dtg_GiaoVien.Columns["DiaChi"].HeaderText = "??a ch?";
+            dtg_GiaoVien.Columns["MonHoc"].HeaderText = "Môn h?c";
+
 
         }
 
         private void dtg_GiaoVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            dtg_GiaoVien.CurrentRow.Selected = true;
+            string MaGV = dtg_GiaoVien.CurrentRow.Cells["MaGV"].Value.ToString();
+            var chosen = new GiaoVienDAO().GetByID(MaGV);
+            tb_MaGV.Text = chosen.MaGV;
+            tb_HoTen.Text = chosen.HoTen;
+            tb_DiaChi.Text = chosen.DiaChi;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-        }
+            GiaoVien gv = new GiaoVien();
+            gv.MaGV = tb_MaGV.Text;
+            gv.HoTen = tb_HoTen.Text;
+            gv.DiaChi = tb_DiaChi.Text;
+            gv.MonHoc = cb_MonHoc.Text;
+            gv.GT = cb_GT.Text;
+            gv.NgaySinh = dt_NgaySinh.Value;
+            bool add = new GiaoVienDAO().Insert(gv);
+            if (!add) MessageBox.Show("Mã GV đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã thêm giáo viên", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_GiaoVien.DataSource = new GiaoVienDAO().ListAll();
+                tb_MaGV.Text = "";
+                tb_HoTen.Text = "";
+                tb_DiaChi.Text = "";
 
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            GiaoVien gv = new GiaoVien();
+            gv.MaGV = tb_MaGV.Text;
+            gv.HoTen = tb_HoTen.Text;
+            gv.DiaChi = tb_DiaChi.Text;
+            gv.MonHoc = cb_MonHoc.Text;
+            gv.GT = cb_GT.Text;
+            gv.NgaySinh = dt_NgaySinh.Value;
+            bool edit = new GiaoVienDAO().Update(gv);
+            if (!edit) MessageBox.Show("Không tồn tại giáo viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã sửa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_GiaoVien.DataSource = new GiaoVienDAO().ListAll();
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            bool del = new GiaoVienDAO().Delete(tb_MaGV.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_GiaoVien.DataSource = new GiaoVienDAO().ListAll();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-           
+            dtg_GiaoVien.DataSource = new GiaoVienDAO().Search(textBox1.Text);
         }
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text = "";
         }
     }
 }
