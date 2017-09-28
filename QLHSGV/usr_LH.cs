@@ -50,7 +50,20 @@ namespace QLHSGV._LH
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            LopHoc gv = new LopHoc();
+            gv.TenLop = textBox1.Text;
+            gv.QSo = Convert.ToInt32(textBox2.Text);
+
+            bool add = new LopHocDAO().Insert(gv);
+            if (!add) MessageBox.Show("Lớp đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã thêm lớp", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+                textBox1.Text = "";
+                textBox2.Text = "";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
