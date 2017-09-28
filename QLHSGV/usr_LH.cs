@@ -38,14 +38,20 @@ namespace QLHSGV._LH
 
         private void usr_LH_Load(object sender, EventArgs e)
         {
-           
+            LopHocDAO dtgv = new LopHocDAO();
+            dtg_LopHoc.DataSource = dtgv.ListAll();
 
+            dtg_LopHoc.Columns["TenLop"].HeaderText = "Lớp";
+            dtg_LopHoc.Columns["QSo"].HeaderText = "Quân số";
         }
 
         private void dtg_LopHoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-
+            dtg_LopHoc.CurrentRow.Selected = true;
+            string MaGV = dtg_LopHoc.CurrentRow.Cells["TenLop"].Value.ToString();
+            var chosen = new LopHocDAO().GetByID(MaGV);
+            textBox1.Text = chosen.TenLop;
+            textBox2.Text = chosen.QSo.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
