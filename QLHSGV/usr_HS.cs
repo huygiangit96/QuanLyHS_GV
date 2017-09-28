@@ -66,7 +66,24 @@ namespace QLHSGV._HS
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            HocSinh gv = new HocSinh();
+            gv.MaHS = textBox1.Text;
+            gv.HoTen = textBox2.Text;
+            gv.DiaChi = textBox3.Text;
+            gv.TenLop = comboBox2.Text;
+            gv.GT = comboBox1.Text;
+            gv.NgaySinh = dateTimePicker1.Value;
+            bool add = new HocSinhDAO().Insert(gv);
+            if (!add) MessageBox.Show("Mã HS đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã thêm học sinh", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_HocSinh.DataSource = new HocSinhDAO().ListAll();
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
