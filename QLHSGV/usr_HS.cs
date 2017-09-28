@@ -88,7 +88,21 @@ namespace QLHSGV._HS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            HocSinh gv = new HocSinh();
+            gv.MaHS = textBox1.Text;
+            gv.HoTen = textBox2.Text;
+            gv.DiaChi = textBox3.Text;
+            gv.TenLop = comboBox2.Text;
+            gv.GT = comboBox1.Text;
+            gv.NgaySinh = dateTimePicker1.Value;
+            bool edit = new HocSinhDAO().Update(gv);
+            if (!edit) MessageBox.Show("Không tồn tại giáo viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã sửa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_HocSinh.DataSource = new HocSinhDAO().ListAll();
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
