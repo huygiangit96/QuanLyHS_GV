@@ -116,12 +116,15 @@ namespace QLHSGV._TTGD
         {
            dtg_TTGD.DataSource = new ThongTinGiangDayDAO().Search(textBox4.Text);
             
+           textBox1.Text = "";
+           textBox2.Text = "";
+           textBox3.Text = "";
 
         }
 
         private void textBox4_Click(object sender, EventArgs e)
         {
-           
+           textBox4.Text = "";
         }
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
