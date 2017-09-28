@@ -38,8 +38,12 @@ namespace QLHSGV._LH
 
         private void usr_LH_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             LopHocDAO dtgv = new LopHocDAO();
             dtg_LopHoc.DataSource = dtgv.ListAll();
+=======
+
+>>>>>>> f5e047550a62ea032781f9efec3a64d45be31f4b
 
             dtg_LopHoc.Columns["TenLop"].HeaderText = "Lớp";
             dtg_LopHoc.Columns["QSo"].HeaderText = "Quân số";
@@ -47,11 +51,16 @@ namespace QLHSGV._LH
 
         private void dtg_LopHoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+<<<<<<< HEAD
             dtg_LopHoc.CurrentRow.Selected = true;
             string MaGV = dtg_LopHoc.CurrentRow.Cells["TenLop"].Value.ToString();
             var chosen = new LopHocDAO().GetByID(MaGV);
             textBox1.Text = chosen.TenLop;
             textBox2.Text = chosen.QSo.ToString();
+=======
+
+
+>>>>>>> f5e047550a62ea032781f9efec3a64d45be31f4b
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -74,22 +83,39 @@ namespace QLHSGV._LH
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            LopHoc gv = new LopHoc();
+            gv.TenLop = textBox1.Text;
+            gv.QSo = Convert.ToInt32(textBox2.Text);
+            bool edit = new LopHocDAO().Update(gv);
+            if (!edit) MessageBox.Show("Không tồn tại lớp", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã sửa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-         
+            bool del = new LopHocDAO().Delete(textBox1.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-           
+            dtg_LopHoc.DataSource = new LopHocDAO().Search(textBox4.Text);
+            textBox1.Text = "";
+            textBox2.Text = "";
+
+
         }
 
         private void textBox4_Click(object sender, EventArgs e)
         {
-
+            textBox4.Text = "";
         }
     }
 }

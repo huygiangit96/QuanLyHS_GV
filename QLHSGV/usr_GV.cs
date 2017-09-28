@@ -64,15 +64,15 @@ namespace QLHSGV._GV
             cb_MonHoc.Text = chosen.MonHoc;
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            // them giang vien
             GiaoVien gv = new GiaoVien();
-            gv.MaGV = tb_MaGV.Text;
-            gv.HoTen = tb_HoTen.Text;
-            gv.DiaChi = tb_DiaChi.Text;
             gv.MonHoc = cb_MonHoc.Text;
             gv.GT = cb_GT.Text;
+            gv.MaGV = tb_MaGV.Text;
+            gv.HoTen = tb_HoTen.Text;
+            gv.DiaChi = tb_DiaChi.Text;         
             gv.NgaySinh = dt_NgaySinh.Value;
             bool add = new GiaoVienDAO().Insert(gv);
             if (!add) MessageBox.Show("Mã GV đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -88,13 +88,14 @@ namespace QLHSGV._GV
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            // sua giao vien
             GiaoVien gv = new GiaoVien();
             gv.MaGV = tb_MaGV.Text;
-            gv.HoTen = tb_HoTen.Text;
-            gv.DiaChi = tb_DiaChi.Text;
+            gv.HoTen = tb_HoTen.Text;         
             gv.MonHoc = cb_MonHoc.Text;
             gv.GT = cb_GT.Text;
             gv.NgaySinh = dt_NgaySinh.Value;
+            gv.DiaChi = tb_DiaChi.Text;
             bool edit = new GiaoVienDAO().Update(gv);
             if (!edit) MessageBox.Show("Không tồn tại giáo viên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
@@ -107,6 +108,7 @@ namespace QLHSGV._GV
 
         private void button3_Click(object sender, EventArgs e)
         {
+            // xoa giao vien
             bool del = new GiaoVienDAO().Delete(tb_MaGV.Text);
             MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
             dtg_GiaoVien.DataSource = new GiaoVienDAO().ListAll();
