@@ -38,34 +38,60 @@ namespace QLHSGV._LH
 
         private void usr_LH_Load(object sender, EventArgs e)
         {
-           
+
 
         }
 
         private void dtg_LopHoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            LopHoc gv = new LopHoc();
+            gv.TenLop = textBox1.Text;
+            gv.QSo = Convert.ToInt32(textBox2.Text);
+
+            bool add = new LopHocDAO().Insert(gv);
+            if (!add) MessageBox.Show("Lớp đã tồn tại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã thêm lớp", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+                textBox1.Text = "";
+                textBox2.Text = "";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            LopHoc gv = new LopHoc();
+            gv.TenLop = textBox1.Text;
+            gv.QSo = Convert.ToInt32(textBox2.Text);
+            bool edit = new LopHocDAO().Update(gv);
+            if (!edit) MessageBox.Show("Không tồn tại lớp", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                MessageBox.Show("Đã sửa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-         
+            bool del = new LopHocDAO().Delete(textBox1.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void textBox4_Click(object sender, EventArgs e)
