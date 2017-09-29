@@ -38,13 +38,28 @@ namespace QLHSGV._GV
 
         private void usr_GV_Load(object sender, EventArgs e)
         {
-           
+            GiaoVienDAO dtgv = new GiaoVienDAO();
+            dtg_GiaoVien.DataSource = dtgv.ListAll();
+
+            dtg_GiaoVien.Columns["MaGV"].HeaderText = "Mã GV";
+            dtg_GiaoVien.Columns["HoTen"].HeaderText = "H? và tên";
+            dtg_GiaoVien.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
+            dtg_GiaoVien.Columns["GT"].HeaderText = "Gi?i tính";
+            dtg_GiaoVien.Columns["DiaChi"].HeaderText = "??a ch?";
+            dtg_GiaoVien.Columns["MonHoc"].HeaderText = "Môn h?c";
+
 
         }
 
         private void dtg_GiaoVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            dtg_GiaoVien.CurrentRow.Selected = true;
+            string MaGV = dtg_GiaoVien.CurrentRow.Cells["MaGV"].Value.ToString();
+            var chosen = new GiaoVienDAO().GetByID(MaGV);
+            tb_MaGV.Text = chosen.MaGV;
+            tb_HoTen.Text = chosen.HoTen;
+            tb_DiaChi.Text = chosen.DiaChi;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
