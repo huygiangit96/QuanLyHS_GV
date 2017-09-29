@@ -107,7 +107,10 @@ namespace QLHSGV._HS
 
         private void button3_Click(object sender, EventArgs e)
         {
-         
+            bool del = new HocSinhDAO().Delete(textBox1.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_HocSinh.DataSource = new HocSinhDAO().ListAll();
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
