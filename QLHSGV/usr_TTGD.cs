@@ -38,12 +38,30 @@ namespace QLHSGV._TTGD
 
         private void usr_TTGD_Load(object sender, EventArgs e)
         {
-          
+            ThongTinGiangDayDAO dtgv = new ThongTinGiangDayDAO();
+            dtg_TTGD.DataSource = dtgv.ListAll();
+            comboBox1.DataSource = new GiaoVienDAO().GetGvName();
+            comboBox2.DataSource = new LopHocDAO().GetTenLop();
+
+            dtg_TTGD.Columns["MaKip"].HeaderText = "Mã kíp";
+            dtg_TTGD.Columns["GiaoVien"].HeaderText = "Giáo viên";
+            dtg_TTGD.Columns["TenLop"].HeaderText = "Lớp";
+            dtg_TTGD.Columns["MonHoc"].HeaderText = "Môn học";
+            dtg_TTGD.Columns["Ngay"].HeaderText = "Ngày";
+            dtg_TTGD.Columns["SoTiet"].HeaderText = "Số tiết";
         }
 
         private void dtg_TTGD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            dtg_TTGD.CurrentRow.Selected = true;
+            string MaGV = dtg_TTGD.CurrentRow.Cells["MaKip"].Value.ToString();
+            var chosen = new ThongTinGiangDayDAO().GetByID(MaGV);
+            textBox1.Text = chosen.MaKip;
+            comboBox1.Text = new GiaoVienDAO().GetByID(chosen.MaGV).HoTen;
+            textBox3.Text = chosen.SoTiet.ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(chosen.Ngay);
+            textBox2.Text = chosen.MonHoc;
+            comboBox2.Text = chosen.TenLop;
         }
         //duc hung
         private void button1_Click(object sender, EventArgs e)
