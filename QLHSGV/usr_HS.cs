@@ -115,7 +115,11 @@ namespace QLHSGV._HS
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            
+            dtg_HocSinh.DataSource = new HocSinhDAO().Search(textBox4.Text);
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+
         }
 
         private void textBox4_Click(object sender, EventArgs e)
