@@ -83,6 +83,9 @@ namespace QLHSGV._LH
 
         private void button3_Click(object sender, EventArgs e)
         {
+            bool del = new LopHocDAO().Delete(textBox1.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_LopHoc.DataSource = new LopHocDAO().ListAll();
 
         }
 
