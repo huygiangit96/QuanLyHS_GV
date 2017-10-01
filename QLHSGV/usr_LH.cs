@@ -100,7 +100,7 @@ namespace QLHSGV._LH
 
         private void textBox4_Click(object sender, EventArgs e)
         {
-
+            textBox4.Text = "";
         }
     }
 }
