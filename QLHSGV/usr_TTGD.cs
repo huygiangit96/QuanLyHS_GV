@@ -106,12 +106,17 @@ namespace QLHSGV._TTGD
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            bool del = new ThongTinGiangDayDAO().Delete(textBox1.Text);
+            MessageBox.Show("Đã xóa", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            dtg_TTGD.DataSource = new ThongTinGiangDayDAO().ListAll();
+
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-           
+           dtg_TTGD.DataSource = new ThongTinGiangDayDAO().Search(textBox4.Text);
+            
+
         }
 
         private void textBox4_Click(object sender, EventArgs e)
