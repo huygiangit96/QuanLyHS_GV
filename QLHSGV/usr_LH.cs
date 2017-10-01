@@ -91,6 +91,10 @@ namespace QLHSGV._LH
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
+            dtg_LopHoc.DataSource = new LopHocDAO().Search(textBox4.Text);
+            textBox1.Text = "";
+            textBox2.Text = "";
+
 
         }
 
