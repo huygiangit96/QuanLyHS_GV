@@ -21,7 +21,7 @@ namespace QLHSGV._TTGD
         {
             get
             {
-                if (_instance == null) _instance = new usr_TTGD();
+                 _instance = new usr_TTGD();
                 return _instance;
             }
 

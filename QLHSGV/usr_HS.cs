@@ -21,7 +21,7 @@ namespace QLHSGV._HS
         {
             get
             {
-                if (_instance == null) _instance = new usr_HS();
+                _instance = new usr_HS();
                 return _instance;
             }
 

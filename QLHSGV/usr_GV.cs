@@ -21,7 +21,7 @@ namespace QLHSGV._GV
         {
             get
             {
-                if (_instance == null) _instance = new usr_GV();
+                 _instance = new usr_GV();
                 return _instance;
             }
 
@@ -42,11 +42,11 @@ namespace QLHSGV._GV
             dtg_GiaoVien.DataSource = dtgv.ListAll();
 
             dtg_GiaoVien.Columns["MaGV"].HeaderText = "Mã GV";
-            dtg_GiaoVien.Columns["HoTen"].HeaderText = "H? và tên";
+            dtg_GiaoVien.Columns["HoTen"].HeaderText = "Họ và tên";
             dtg_GiaoVien.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
-            dtg_GiaoVien.Columns["GT"].HeaderText = "Gi?i tính";
-            dtg_GiaoVien.Columns["DiaChi"].HeaderText = "??a ch?";
-            dtg_GiaoVien.Columns["MonHoc"].HeaderText = "Môn h?c";
+            dtg_GiaoVien.Columns["GT"].HeaderText = "Giới tính";
+            dtg_GiaoVien.Columns["DiaChi"].HeaderText = "Địa chi";
+            dtg_GiaoVien.Columns["MonHoc"].HeaderText = "Môn học";
 
 
         }
