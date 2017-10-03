@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLHSGVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="GiaoVien">
+    <Key>
+      <PropertyRef Name="MaGV" />
+    </Key>
+    <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="GT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MonHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ThongTinGiangDays" Relationship="Self.FK_ThongTinGiangDay_GiaoVien" FromRole="GiaoVien" ToRole="ThongTinGiangDay" />
+  </EntityType>
+  <EntityType Name="HocSinh">
+    <Key>
+      <PropertyRef Name="MaHS" />
+    </Key>
+    <Property Name="MaHS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LopHoc" Relationship="Self.FK_HocSinh_LopHoc" FromRole="HocSinh" ToRole="LopHoc" />
+  </EntityType>
+  <EntityType Name="LopHoc">
+    <Key>
+      <PropertyRef Name="TenLop" />
+    </Key>
+    <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QSo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HocSinhs" Relationship="Self.FK_HocSinh_LopHoc" FromRole="LopHoc" ToRole="HocSinh" />
+    <NavigationProperty Name="ThongTinGiangDays" Relationship="Self.FK_ThongTinGiangDay_LopHoc" FromRole="LopHoc" ToRole="ThongTinGiangDay" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ThongTinGiangDay">
+    <Key>
+      <PropertyRef Name="MaKip" />
+    </Key>
+    <Property Name="MaKip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MonHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SoTiet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GiaoVien" Relationship="Self.FK_ThongTinGiangDay_GiaoVien" FromRole="ThongTinGiangDay" ToRole="GiaoVien" />
+    <NavigationProperty Name="LopHoc" Relationship="Self.FK_ThongTinGiangDay_LopHoc" FromRole="ThongTinGiangDay" ToRole="LopHoc" />
+  </EntityType>
+  <Association Name="FK_ThongTinGiangDay_GiaoVien">
+    <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+    <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiaoVien">
+        <PropertyRef Name="MaGV" />
+      </Principal>
+      <Dependent Role="ThongTinGiangDay">
+        <PropertyRef Name="MaGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HocSinh_LopHoc">
+    <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="0..1" />
+    <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="TenLop" />
+      </Principal>
+      <Dependent Role="HocSinh">
+        <PropertyRef Name="TenLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThongTinGiangDay_LopHoc">
+    <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+    <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHoc">
+        <PropertyRef Name="TenLop" />
+      </Principal>
+      <Dependent Role="ThongTinGiangDay">
+        <PropertyRef Name="TenLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLHSGVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
+    <EntitySet Name="HocSinhs" EntityType="Self.HocSinh" />
+    <EntitySet Name="LopHocs" EntityType="Self.LopHoc" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="ThongTinGiangDays" EntityType="Self.ThongTinGiangDay" />
+    <AssociationSet Name="FK_ThongTinGiangDay_GiaoVien" Association="Self.FK_ThongTinGiangDay_GiaoVien">
+      <End Role="GiaoVien" EntitySet="GiaoViens" />
+      <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDays" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HocSinh_LopHoc" Association="Self.FK_HocSinh_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHocs" />
+      <End Role="HocSinh" EntitySet="HocSinhs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThongTinGiangDay_LopHoc" Association="Self.FK_ThongTinGiangDay_LopHoc">
+      <End Role="LopHoc" EntitySet="LopHocs" />
+      <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDays" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="QLHSGVModel.User" />
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

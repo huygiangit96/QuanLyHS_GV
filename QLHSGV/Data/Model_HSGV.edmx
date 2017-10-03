@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLHSGVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GiaoVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="GT" Type="nvarchar" MaxLength="10" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="20" />
+          <Property Name="MonHoc" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="HocSinh">
+          <Key>
+            <PropertyRef Name="MaHS" />
+          </Key>
+          <Property Name="MaHS" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinh" Type="date" />
+          <Property Name="GT" Type="nvarchar" MaxLength="10" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="LopHoc">
+          <Key>
+            <PropertyRef Name="TenLop" />
+          </Key>
+          <Property Name="TenLop" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="QSo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ThongTinGiangDay">
+          <Key>
+            <PropertyRef Name="MaKip" />
+          </Key>
+          <Property Name="MaKip" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaGV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MonHoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ngay" Type="date" Nullable="false" />
+          <Property Name="SoTiet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_HocSinh_LopHoc">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="TenLop" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="TenLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinGiangDay_GiaoVien">
+          <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+          <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiaoVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="ThongTinGiangDay">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinGiangDay_LopHoc">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="TenLop" />
+            </Principal>
+            <Dependent Role="ThongTinGiangDay">
+              <PropertyRef Name="TenLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLHSGVModelStoreContainer">
+          <EntitySet Name="GiaoVien" EntityType="Self.GiaoVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HocSinh" EntityType="Self.HocSinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LopHoc" EntityType="Self.LopHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinGiangDay" EntityType="Self.ThongTinGiangDay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_HocSinh_LopHoc" Association="Self.FK_HocSinh_LopHoc">
+            <End Role="LopHoc" EntitySet="LopHoc" />
+            <End Role="HocSinh" EntitySet="HocSinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinGiangDay_GiaoVien" Association="Self.FK_ThongTinGiangDay_GiaoVien">
+            <End Role="GiaoVien" EntitySet="GiaoVien" />
+            <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinGiangDay_LopHoc" Association="Self.FK_ThongTinGiangDay_LopHoc">
+            <End Role="LopHoc" EntitySet="LopHoc" />
+            <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLHSGVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GiaoVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MonHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ThongTinGiangDays" Relationship="Self.FK_ThongTinGiangDay_GiaoVien" FromRole="GiaoVien" ToRole="ThongTinGiangDay" />
+        </EntityType>
+        <EntityType Name="HocSinh">
+          <Key>
+            <PropertyRef Name="MaHS" />
+          </Key>
+          <Property Name="MaHS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="GT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LopHoc" Relationship="Self.FK_HocSinh_LopHoc" FromRole="HocSinh" ToRole="LopHoc" />
+        </EntityType>
+        <EntityType Name="LopHoc">
+          <Key>
+            <PropertyRef Name="TenLop" />
+          </Key>
+          <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QSo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HocSinhs" Relationship="Self.FK_HocSinh_LopHoc" FromRole="LopHoc" ToRole="HocSinh" />
+          <NavigationProperty Name="ThongTinGiangDays" Relationship="Self.FK_ThongTinGiangDay_LopHoc" FromRole="LopHoc" ToRole="ThongTinGiangDay" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ThongTinGiangDay">
+          <Key>
+            <PropertyRef Name="MaKip" />
+          </Key>
+          <Property Name="MaKip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TenLop" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MonHoc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ngay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SoTiet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GiaoVien" Relationship="Self.FK_ThongTinGiangDay_GiaoVien" FromRole="ThongTinGiangDay" ToRole="GiaoVien" />
+          <NavigationProperty Name="LopHoc" Relationship="Self.FK_ThongTinGiangDay_LopHoc" FromRole="ThongTinGiangDay" ToRole="LopHoc" />
+        </EntityType>
+        <Association Name="FK_ThongTinGiangDay_GiaoVien">
+          <End Role="GiaoVien" Type="Self.GiaoVien" Multiplicity="1" />
+          <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GiaoVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="ThongTinGiangDay">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HocSinh_LopHoc">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="0..1" />
+          <End Role="HocSinh" Type="Self.HocSinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="TenLop" />
+            </Principal>
+            <Dependent Role="HocSinh">
+              <PropertyRef Name="TenLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinGiangDay_LopHoc">
+          <End Role="LopHoc" Type="Self.LopHoc" Multiplicity="1" />
+          <End Role="ThongTinGiangDay" Type="Self.ThongTinGiangDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LopHoc">
+              <PropertyRef Name="TenLop" />
+            </Principal>
+            <Dependent Role="ThongTinGiangDay">
+              <PropertyRef Name="TenLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLHSGVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GiaoViens" EntityType="Self.GiaoVien" />
+          <EntitySet Name="HocSinhs" EntityType="Self.HocSinh" />
+          <EntitySet Name="LopHocs" EntityType="Self.LopHoc" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="ThongTinGiangDays" EntityType="Self.ThongTinGiangDay" />
+          <AssociationSet Name="FK_ThongTinGiangDay_GiaoVien" Association="Self.FK_ThongTinGiangDay_GiaoVien">
+            <End Role="GiaoVien" EntitySet="GiaoViens" />
+            <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HocSinh_LopHoc" Association="Self.FK_HocSinh_LopHoc">
+            <End Role="LopHoc" EntitySet="LopHocs" />
+            <End Role="HocSinh" EntitySet="HocSinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinGiangDay_LopHoc" Association="Self.FK_ThongTinGiangDay_LopHoc">
+            <End Role="LopHoc" EntitySet="LopHocs" />
+            <End Role="ThongTinGiangDay" EntitySet="ThongTinGiangDays" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="QLHSGVModel.User" />
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLHSGVModelStoreContainer" CdmEntityContainer="QLHSGVEntities">
+          <EntitySetMapping Name="GiaoViens">
+            <EntityTypeMapping TypeName="QLHSGVModel.GiaoVien">
+              <MappingFragment StoreEntitySet="GiaoVien">
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="MonHoc" ColumnName="MonHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HocSinhs">
+            <EntityTypeMapping TypeName="QLHSGVModel.HocSinh">
+              <MappingFragment StoreEntitySet="HocSinh">
+                <ScalarProperty Name="MaHS" ColumnName="MaHS" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="GT" ColumnName="GT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LopHocs">
+            <EntityTypeMapping TypeName="QLHSGVModel.LopHoc">
+              <MappingFragment StoreEntitySet="LopHoc">
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="QSo" ColumnName="QSo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLHSGVModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinGiangDays">
+            <EntityTypeMapping TypeName="QLHSGVModel.ThongTinGiangDay">
+              <MappingFragment StoreEntitySet="ThongTinGiangDay">
+                <ScalarProperty Name="MaKip" ColumnName="MaKip" />
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+                <ScalarProperty Name="MonHoc" ColumnName="MonHoc" />
+                <ScalarProperty Name="Ngay" ColumnName="Ngay" />
+                <ScalarProperty Name="SoTiet" ColumnName="SoTiet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QLHSGVModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
